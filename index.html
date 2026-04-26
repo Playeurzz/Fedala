@@ -2,297 +2,202 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Skyland - By Playeurz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyland - Panel Modération</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #050505;
-            --card: #0f0f0f;
-            --red-glow: #e60000;
-            --red-soft: #b30000;
-            --text: #ffffff;
-            --input-bg: #151515;
-            --border: #222;
+        /* Design & UI */
+        body { 
+            background: #050505; 
+            color: #fff; 
+            font-family: 'Rajdhani', sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 20px; 
+            margin: 0; 
         }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-            margin: 0;
-            min-height: 100vh;
-            letter-spacing: 0.5px;
+        .container { 
+            width: 100%; 
+            max-width: 900px; 
+            background: #0f0f0f; 
+            padding: 30px; 
+            border-radius: 4px; 
+            border: 1px solid #1a1a1a; 
+            position: relative;
         }
-
-        .container {
-            width: 100%;
-            max-width: 950px;
-            background: var(--card);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #1a1a1a;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(230, 0, 0, 0.5);
-            letter-spacing: 8px;
-        }
-
-        .subtitle {
-            font-size: 0.75rem;
-            color: #444;
-            letter-spacing: 4px;
-            margin-top: -5px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .inputs-area {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 50px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        label {
-            font-size: 0.8rem;
-            color: var(--red-soft);
-            text-transform: uppercase;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        input {
-            background: var(--input-bg);
-            border: 2px solid #222;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            outline: none;
-            transition: 0.3s;
-            text-align: center;
-            width: 120px;
-        }
-
-        input:focus {
-            border-color: var(--red-soft);
-            background: #1c1c1c;
-        }
-
-        .section-title {
-            font-size: 0.9rem;
-            border-left: 3px solid var(--red-soft);
-            padding-left: 15px;
-            margin-bottom: 20px;
-            color: #aaa;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        button {
-            background: #111;
-            color: #bbb;
-            border: 1px solid var(--border);
-            padding: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: all 0.2s ease-in-out;
-        }
-
-        button:hover {
-            background: var(--red-soft);
-            color: #fff;
-            border-color: var(--red-glow);
-            box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
-            transform: translateY(-3px);
-        }
-
-        #result-panel {
-            position: sticky;
-            bottom: 30px;
-            background: #000;
-            border: 2px solid var(--red-soft);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 40px;
-            display: none;
-            box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(230, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .cmd-label { 
-            font-size: 0.8rem; 
-            color: #555; 
-            margin-bottom: 15px; 
+        h1 { 
+            color: #e60000; 
             text-transform: uppercase; 
-            font-weight: 700;
-            letter-spacing: 1px;
+            margin: 0; 
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(230, 0, 0, 0.5); 
+        }
+        .author { font-size: 11px; color: #444; margin-bottom: 25px; letter-spacing: 1px; }
+        
+        /* Formulaire */
+        .controls { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        input, select { 
+            background: #151515; 
+            border: 1px solid #333; 
+            color: #fff; 
+            padding: 12px 15px; 
+            font-family: inherit; 
+            font-size: 18px; 
+            outline: none; 
+            flex: 1;
+            min-width: 200px;
+        }
+        input:focus, select:focus { border-color: #e60000; box-shadow: 0 0 5px rgba(230, 0, 0, 0.2); }
+        
+        /* Sections */
+        .section-title { 
+            border-left: 4px solid #e60000; 
+            padding-left: 15px; 
+            margin: 30px 0 15px; 
+            text-transform: uppercase; 
+            font-size: 1.2rem;
+            color: #eee;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 10px; 
         }
         
-        .cmd-value { 
-            font-family: 'Consolas', monospace; 
-            color: #fff; 
-            font-size: 1.3rem; 
-            font-weight: 700;
-            background: #0a0a0a;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed #333;
+        /* Boutons */
+        button { 
+            background: #1a1a1a; 
+            border: 1px solid #333; 
+            color: #bbb; 
+            padding: 14px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            font-family: inherit; 
+            text-align: left; 
+            font-size: 15px;
         }
-
-        .copy-status { 
-            color: #00ff66; 
-            font-size: 0.9rem; 
-            margin-top: 15px; 
-            font-weight: 700;
-            text-transform: uppercase;
+        button:hover { 
+            background: #e60000; 
+            color: #fff; 
+            box-shadow: 0 0 15px rgba(230, 0, 0, 0.3); 
+            border-color: #ff4d4d;
+            transform: translateY(-2px);
+        }
+        .special { grid-column: span 1; border-color: #e60000; color: #ff4d4d; }
+        
+        /* Output Flash */
+        #output { 
+            position: fixed; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: #e60000; 
+            color: #fff; 
+            padding: 15px 40px; 
+            border-radius: 4px; 
+            font-size: 1.2rem; 
+            display: none; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+            z-index: 100;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>PANEL SKYLAND</h1>
-        <div class="subtitle">By Playeurz</div>
+    <h1>Skyland Modération</h1>
+    <div class="author">By Playeurz</div>
+
+    <div class="controls">
+        <input type="text" id="target" placeholder="ID JOUEUR (ex: 7656119...)">
+        <select id="lvl">
+            <optgroup label="Pédagogie (0-4 warns)">
+                <option value="0">SAFE 0 (Averto Oral)</option>
+                <option value="1">SAFE 1 (Warn)</option>
+                <option value="2">SAFE 2 (Warn)</option>
+                <option value="3">SAFE 3 (Warn)</option>
+                <option value="4">SAFE 4 (Warn)</option>
+            </optgroup>
+            <optgroup label="Sanctions (5+ warns)">
+                <option value="5" selected>NIVEAU 1</option>
+                <option value="6">NIVEAU 2</option>
+                <option value="7">NIVEAU 3</option>
+                <option value="8">NIVEAU 4</option>
+                <option value="9">NIVEAU 5</option>
+            </optgroup>
+        </select>
     </div>
 
-    <div class="inputs-area">
-        <div class="input-group">
-            <label>ID JOUEUR</label>
-            <input type="number" id="target" placeholder="ID">
-        </div>
-        <div class="input-group">
-            <label>NIVEAU WARN</label>
-            <input type="number" id="lvl" value="1" min="1" max="5">
-        </div>
+    <div class="section-title">Comportement & Chat</div>
+    <div class="grid">
+        <button onclick="gen('HRP / Spam', [25, 40, 55, 70, 100])">HRP / Spam</button>
+        <button onclick="gen('Refus de scène', [30, 45, 60, 75, 100])">Refus de scène</button>
+        <button onclick="gen('Copbait', [15, 30, 45, 60, 100])">Copbait</button>
+        <button onclick="gen('Freepunch', [15, 30, 45, 60, 100])">Freepunch</button>
     </div>
 
-    <div class="section-title">Infractions Standard</div>
-    <div id="grid-std" class="grid"></div>
+    <div class="section-title">Actions Illégales / RP</div>
+    <div class="grid">
+        <button onclick="gen('Freekill / RDM', [60, 75, 90, 105, 120])">Freekill / RDM</button>
+        <button onclick="gen('Powergaming', [30, 45, 60, 75, 100])">Powergaming</button>
+        <button onclick="gen('Metagaming', [20, 40, 60, 80, '12h'])">Metagaming</button>
+        <button onclick="gen('No Fear / No Pain', [45, 60, 75, 100, '12h'])">No Fear / No Pain</button>
+        <button onclick="gen('Fail RP', [20, 35, 50, 70, 100])">Fail RP</button>
+        <button onclick="gen('Braquage Zone Safe', [45, 60, 80, 110, '12h'])">Braquage Zone Safe</button>
+        <button onclick="gen('Tir sur Police/EMS', [90, 110, 130, 150, '12h'])">Tir sur Police/EMS</button>
+        <button onclick="gen('Glitch / Exploit', [50, 75, 90, 120, '72h'])">Glitch / Exploit</button>
+    </div>
 
     <div class="section-title">Cas Particuliers</div>
-    <div id="grid-spec" class="grid"></div>
-
-    <div id="result-panel">
-        <div class="cmd-label">Commande générée et copiée :</div>
-        <div class="cmd-value" id="res"></div>
-        <div class="copy-status">✅ PRÊT À ÊTRE COLLÉ (CTRL + V)</div>
+    <div class="grid">
+        <button class="special" onclick="raw('jail', 200, 'Descente sans ticket')">Descente sans ticket (200m)</button>
+        <button class="special" onclick="raw('jail', 260, 'ALT+F4 en scène')">ALT+F4 en scène (260m)</button>
     </div>
+
+    <div id="output"></div>
 </div>
 
 <script>
-    // Config des sanctions
-    const rules = [
-        { n: "HRP", p: ["25", "40", "55", "70", "100"], r: "Action Hors RP" },
-        { n: "Spam", p: ["25", "40", "55", "70", "100"], r: "Spam chat / micro" },
-        { n: "Abandon Scene", p: ["30", "45", "60", "75", "100"], r: "Abandon de scene" },
-        { n: "Refus Scene", p: ["30", "45", "60", "75", "100"], r: "Refus de scene" },
-        { n: "Copbait", p: ["15", "30", "45", "60", "100"], r: "Copbait / Provoc" },
-        { n: "Freepunch", p: ["15", "30", "45", "60", "100"], r: "free punch" },
-        { n: "Freekill", p: ["60", "75", "90", "105", "120"], r: "freekill" },
-        { n: "Car Kill", p: ["60", "75", "90", "105", "120"], r: "Carkill gratuit" },
-        { n: "RDM", p: ["60", "75", "90", "105", "120"], r: "Tirs ou violences gratuits" },
-        { n: "Powergaming", p: ["30", "45", "60", "75", "100"], r: "Powergaming / No RP" },
-        { n: "Metagaming", p: ["20", "40", "60", "80", "Ban 12h"], r: "metagaming" },
-        { n: "No Fear", p: ["45", "60", "75", "100", "Ban 12h"], r: "Non respect du Fear" },
-        { n: "No Pain", p: ["45", "60", "75", "100", "Ban 12h"], r: "Non respect du Pain" },
-        { n: "Fail RP", p: ["20", "35", "50", "70", "100"], r: "Fail RP" },
-        { n: "Otage Mal Géré", p: ["20", "35", "50", "70", "100"], r: "Mauvais RP otage" },
-        { n: "Braquage Ville", p: ["45", "60", "80", "110", "Ban 12h"], r: "Braquage zone safe" },
-        { n: "Tir sur Police", p: ["90", "110", "130", "150", "Ban 12h"], r: "Tir sur la Police" },
-        { n: "Tir sur EMS", p: ["90", "110", "130", "150", "Ban 12h"], r: "Tir sur les EMS" },
-        { n: "Glitch", p: ["50", "75", "90", "120", "Ban 24-72h"], r: "Glitch / Exploit bug" },
-        { n: "Insultes HRP", p: ["25", "45", "60", "120", "Ban 12h"], r: "Insultes Hors RP" },
-        { n: "Insultes Staff", p: ["200", "230", "260", "290", "Ban 12h"], r: "Manque de respect Staff" },
-        { n: "Streamsniping", p: ["30", "60", "90", "120", "Ban 48h"], r: "Streamsniping" },
-        { n: "Cheat", p: ["Ban 48h", "Ban 72h", "Ban 7j", "Ban 14j", "Ban perm"], r: "Utilisation de cheat" },
-        { n: "Duplication", p: ["Ban 48h", "Ban 72h", "Ban 7j", "Ban 14j", "Ban perm"], r: "Duplication d'items" }
-    ];
+    const out = document.querySelector('#output');
+    
+    // Logique de copie auto
+    const copy = (txt) => {
+        navigator.clipboard.writeText(txt).then(() => {
+            out.innerText = `COMMANDE COPIÉE : ${txt}`;
+            out.style.display = 'block';
+            
+            // Flash visuel pour confirmation
+            out.style.background = '#2ecc71'; 
+            setTimeout(() => { out.style.background = '#e60000'; }, 250);
+            
+            // Disparition après 3 secondes
+            setTimeout(() => { out.style.display = 'none'; }, 3000);
+        });
+    };
 
-    const specials = [
-        { n: "Descente sans ticket", d: "200", r: "Descente non autorisee" },
-        { n: "Alt + F4 en scene", d: "260", r: "Alt+F4 en scene" },
-        { n: "Propos Graves", d: "Ban direct", r: "Propos discriminatoires" }
-    ];
-
-    const stdGrid = document.querySelector('#grid-std');
-    const spcGrid = document.querySelector('#grid-spec');
-
-    // Build buttons
-    rules.forEach(s => {
-        let btn = document.createElement('button');
-        btn.innerHTML = s.n;
-        btn.onclick = () => makeCmd(s.p, s.r, true);
-        stdGrid.appendChild(btn);
-    });
-
-    specials.forEach(s => {
-        let btn = document.createElement('button');
-        btn.innerHTML = s.n;
-        btn.onclick = () => makeCmd(s.d, s.r, false);
-        spcGrid.appendChild(btn);
-    });
-
-    function makeCmd(val, reason, mode) {
-        const id = document.querySelector('#target').value || "0";
-        const w = document.querySelector('#lvl').value || 1;
-        let c = "";
-
-        if(mode) {
-            let i = Math.max(0, Math.min(w - 1, 4));
-            let t = val[i];
-            let type = t.includes("Ban") ? "/ban" : "/jail";
-            c = `${type} ${id} ${t} "${reason} - Warn ${w}"`;
-        } else {
-            let type = val.includes("Ban") ? "/ban" : "/jail";
-            let d = (val === "Ban direct") ? "24h" : val;
-            c = `${type} ${id} ${d} "${reason}"`;
+    // Générateur basé sur le barème
+    const gen = (label, rules) => {
+        const target = document.querySelector('#target').value || 'ID_MANQUANT';
+        const lvl = parseInt(document.querySelector('#lvl').value);
+        
+        // Moins de 5 warns = Pas de jail/ban
+        if(lvl < 5) {
+            return copy(`warn ${target} ${label} (Avertissement)`);
         }
 
-        const out = document.querySelector('#res');
-        out.innerHTML = c;
-        document.querySelector('#result-panel').style.display = 'block';
+        const i = lvl - 5;
+        const val = rules[i];
+        const cmd = (typeof val === 'string' && val.includes('h')) ? 'ban' : 'jail';
         
-        navigator.clipboard.writeText(c).catch(err => {
-            console.error('Erreur clip:', err);
-        });
-    }
+        copy(`/${cmd} ${target} ${val} ${label} (Niveau ${i + 1})`);
+    };
+
+    // Commandes fixes
+    const raw = (cmd, t, reason) => {
+        const target = document.querySelector('#target').value || 'ID_MANQUANT';
+        copy(`/${cmd} ${target} ${t} ${reason}`);
+    };
 </script>
 
 </body>
